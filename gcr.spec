@@ -4,15 +4,15 @@
 #
 Name     : gcr
 Version  : 3.20.0
-Release  : 1
+Release  : 2
 URL      : https://download.gnome.org/core/3.21/3.21.4/sources/gcr-3.20.0.tar.xz
 Source0  : https://download.gnome.org/core/3.21/3.21.4/sources/gcr-3.20.0.tar.xz
 Summary  : GObject and GUI library for high level crypto parsing and display
 Group    : Development/Tools
-License  : GPL-2.0 LGPL-2.0
+License  : LGPL-2.0
 Requires: gcr-bin
-Requires: gcr-lib
 Requires: gcr-data
+Requires: gcr-lib
 Requires: gcr-doc
 Requires: gcr-locales
 BuildRequires : dbus
@@ -98,6 +98,7 @@ locales components for the gcr package.
 
 %build
 export LANG=C
+export SOURCE_DATE_EPOCH=1491314940
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
@@ -109,6 +110,7 @@ export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
+export SOURCE_DATE_EPOCH=1491314940
 rm -rf %{buildroot}
 %make_install
 %find_lang gcr
@@ -123,6 +125,9 @@ rm -rf %{buildroot}
 
 %files data
 %defattr(-,root,root,-)
+/usr/lib64/girepository-1.0/Gck-1.typelib
+/usr/lib64/girepository-1.0/Gcr-3.typelib
+/usr/lib64/girepository-1.0/GcrUi-3.typelib
 /usr/share/GConf/gsettings/org.gnome.crypto.pgp.convert
 /usr/share/GConf/gsettings/org.gnome.crypto.pgp_keyservers.convert
 /usr/share/applications/gcr-prompter.desktop
@@ -131,9 +136,7 @@ rm -rf %{buildroot}
 /usr/share/dbus-1/services/org.gnome.keyring.SystemPrompter.service
 /usr/share/gcr-3/ui/gcr-pkcs11-import-dialog.ui
 /usr/share/gcr-3/ui/gcr-unlock-options-widget.ui
-/usr/share/gir-1.0/Gck-1.gir
-/usr/share/gir-1.0/Gcr-3.gir
-/usr/share/gir-1.0/GcrUi-3.gir
+/usr/share/gir-1.0/*.gir
 /usr/share/glib-2.0/schemas/org.gnome.crypto.pgp.gschema.xml
 /usr/share/icons/hicolor/16x16/apps/gcr-gnupg.png
 /usr/share/icons/hicolor/16x16/apps/gcr-key-pair.png
@@ -226,11 +229,14 @@ rm -rf %{buildroot}
 /usr/include/gcr-3/ui/gcr-unlock-options-widget.h
 /usr/include/gcr-3/ui/gcr-viewer-widget.h
 /usr/include/gcr-3/ui/gcr-viewer.h
-/usr/lib64/*.so
-/usr/lib64/girepository-1.0/Gck-1.typelib
-/usr/lib64/girepository-1.0/Gcr-3.typelib
-/usr/lib64/girepository-1.0/GcrUi-3.typelib
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/libgck-1.so
+/usr/lib64/libgcr-3.so
+/usr/lib64/libgcr-base-3.so
+/usr/lib64/libgcr-ui-3.so
+/usr/lib64/pkgconfig/gck-1.pc
+/usr/lib64/pkgconfig/gcr-3.pc
+/usr/lib64/pkgconfig/gcr-base-3.pc
+/usr/lib64/pkgconfig/gcr-ui-3.pc
 
 %files doc
 %defattr(-,root,root,-)
@@ -323,8 +329,15 @@ rm -rf %{buildroot}
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libgck-1.so.0
+/usr/lib64/libgck-1.so.0.0.0
+/usr/lib64/libgcr-3.so.1
+/usr/lib64/libgcr-3.so.1.0.0
+/usr/lib64/libgcr-base-3.so.1
+/usr/lib64/libgcr-base-3.so.1.0.0
+/usr/lib64/libgcr-ui-3.so.1
+/usr/lib64/libgcr-ui-3.so.1.0.0
 
-%files locales -f gcr.lang 
+%files locales -f gcr.lang
 %defattr(-,root,root,-)
 
