@@ -4,9 +4,9 @@
 #
 Name     : gcr
 Version  : 3.20.0
-Release  : 2
-URL      : https://download.gnome.org/core/3.21/3.21.4/sources/gcr-3.20.0.tar.xz
-Source0  : https://download.gnome.org/core/3.21/3.21.4/sources/gcr-3.20.0.tar.xz
+Release  : 3
+URL      : https://download.gnome.org/sources/gcr/3.20/gcr-3.20.0.tar.xz
+Source0  : https://download.gnome.org/sources/gcr/3.20/gcr-3.20.0.tar.xz
 Summary  : GObject and GUI library for high level crypto parsing and display
 Group    : Development/Tools
 License  : LGPL-2.0
@@ -97,8 +97,11 @@ locales components for the gcr package.
 %setup -q -n gcr-3.20.0
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1491314940
+export SOURCE_DATE_EPOCH=1492699466
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
@@ -106,11 +109,11 @@ make V=1  %{?_smp_mflags}
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1491314940
+export SOURCE_DATE_EPOCH=1492699466
 rm -rf %{buildroot}
 %make_install
 %find_lang gcr
