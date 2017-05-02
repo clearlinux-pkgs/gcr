@@ -4,7 +4,7 @@
 #
 Name     : gcr
 Version  : 3.20.0
-Release  : 4
+Release  : 5
 URL      : https://download.gnome.org/sources/gcr/3.20/gcr-3.20.0.tar.xz
 Source0  : https://download.gnome.org/sources/gcr/3.20/gcr-3.20.0.tar.xz
 Summary  : GObject and GUI library for high level crypto parsing and display
