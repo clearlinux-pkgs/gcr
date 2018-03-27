@@ -1,5 +1,4 @@
 Configure miss: vapigen
-Configure miss: x86_64-generic-linux-gnu-libgcrypt-config
 Configure miss: build strict
 Configure miss: whether to build with gcov testing
 Configure miss: code coverage
