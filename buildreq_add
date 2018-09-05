@@ -8,3 +8,5 @@ dbus
 libgpg-error-dev
 libgcrypt-dev
 gnupg
+vala
+vala-dev

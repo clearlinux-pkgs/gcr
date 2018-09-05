@@ -1,4 +1,3 @@
-Configure miss: vapigen
 Configure miss: build strict
 Configure miss: whether to build with gcov testing
 Configure miss: code coverage

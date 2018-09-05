@@ -4,7 +4,7 @@
 #
 Name     : gcr
 Version  : 3.28.0
-Release  : 10
+Release  : 11
 URL      : https://download.gnome.org/sources/gcr/3.28/gcr-3.28.0.tar.xz
 Source0  : https://download.gnome.org/sources/gcr/3.28/gcr-3.28.0.tar.xz
 Summary  : GObject and GUI library for high level crypto parsing and display
@@ -13,8 +13,9 @@ License  : LGPL-2.0
 Requires: gcr-bin
 Requires: gcr-data
 Requires: gcr-lib
-Requires: gcr-doc
+Requires: gcr-license
 Requires: gcr-locales
+BuildRequires : buildreq-gnome
 BuildRequires : dbus
 BuildRequires : dbus-dev
 BuildRequires : dbus-extras
@@ -38,8 +39,9 @@ BuildRequires : pkgconfig(gobject-2.0)
 BuildRequires : pkgconfig(gthread-2.0)
 BuildRequires : pkgconfig(gtk+-3.0)
 BuildRequires : pkgconfig(gtk+-x11-3.0)
-BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(p11-kit-1)
+BuildRequires : vala
+BuildRequires : vala-dev
 
 %description
 GCR is a library for displaying certificates, and crypto UI, accessing
@@ -50,6 +52,7 @@ desktop.
 Summary: bin components for the gcr package.
 Group: Binaries
 Requires: gcr-data
+Requires: gcr-license
 
 %description bin
 bin components for the gcr package.
@@ -87,9 +90,18 @@ doc components for the gcr package.
 Summary: lib components for the gcr package.
 Group: Libraries
 Requires: gcr-data
+Requires: gcr-license
 
 %description lib
 lib components for the gcr package.
+
+
+%package license
+Summary: license components for the gcr package.
+Group: Default
+
+%description license
+license components for the gcr package.
 
 
 %package locales
@@ -108,7 +120,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1522184887
+export SOURCE_DATE_EPOCH=1536130478
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -127,8 +139,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1522184887
+export SOURCE_DATE_EPOCH=1536130478
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/gcr
+cp COPYING %{buildroot}/usr/share/doc/gcr/COPYING
 %make_install
 %find_lang gcr
 
@@ -183,6 +197,13 @@ rm -rf %{buildroot}
 /usr/share/icons/hicolor/48x48/apps/gcr-password.png
 /usr/share/icons/hicolor/48x48/apps/gcr-smart-card.png
 /usr/share/mime/packages/gcr-crypto-types.xml
+/usr/share/vala/vapi/gck-1.deps
+/usr/share/vala/vapi/gck-1.vapi
+/usr/share/vala/vapi/gcr-3.deps
+/usr/share/vala/vapi/gcr-3.vapi
+/usr/share/vala/vapi/gcr-ui-3.deps
+/usr/share/vala/vapi/gcr-ui-3.vapi
+/usr/share/vala/vapi/pkcs11.vapi
 
 %files dev
 %defattr(-,root,root,-)
@@ -256,7 +277,7 @@ rm -rf %{buildroot}
 /usr/lib64/pkgconfig/gcr-ui-3.pc
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/gtk-doc/html/gck/GckAttributes.html
 /usr/share/gtk-doc/html/gck/GckEnumerator.html
 /usr/share/gtk-doc/html/gck/GckModule.html
@@ -353,6 +374,10 @@ rm -rf %{buildroot}
 /usr/lib64/libgcr-base-3.so.1.0.0
 /usr/lib64/libgcr-ui-3.so.1
 /usr/lib64/libgcr-ui-3.so.1.0.0
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/gcr/COPYING
 
 %files locales -f gcr.lang
 %defattr(-,root,root,-)
