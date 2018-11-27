@@ -4,17 +4,18 @@
 #
 Name     : gcr
 Version  : 3.28.0
-Release  : 12
+Release  : 13
 URL      : https://download.gnome.org/sources/gcr/3.28/gcr-3.28.0.tar.xz
 Source0  : https://download.gnome.org/sources/gcr/3.28/gcr-3.28.0.tar.xz
 Summary  : GObject and GUI library for high level crypto parsing and display
 Group    : Development/Tools
 License  : LGPL-2.0
-Requires: gcr-bin
-Requires: gcr-data
-Requires: gcr-lib
-Requires: gcr-license
-Requires: gcr-locales
+Requires: gcr-bin = %{version}-%{release}
+Requires: gcr-data = %{version}-%{release}
+Requires: gcr-lib = %{version}-%{release}
+Requires: gcr-libexec = %{version}-%{release}
+Requires: gcr-license = %{version}-%{release}
+Requires: gcr-locales = %{version}-%{release}
 BuildRequires : buildreq-gnome
 BuildRequires : dbus
 BuildRequires : dbus-dev
@@ -51,8 +52,9 @@ desktop.
 %package bin
 Summary: bin components for the gcr package.
 Group: Binaries
-Requires: gcr-data
-Requires: gcr-license
+Requires: gcr-data = %{version}-%{release}
+Requires: gcr-libexec = %{version}-%{release}
+Requires: gcr-license = %{version}-%{release}
 
 %description bin
 bin components for the gcr package.
@@ -69,10 +71,10 @@ data components for the gcr package.
 %package dev
 Summary: dev components for the gcr package.
 Group: Development
-Requires: gcr-lib
-Requires: gcr-bin
-Requires: gcr-data
-Provides: gcr-devel
+Requires: gcr-lib = %{version}-%{release}
+Requires: gcr-bin = %{version}-%{release}
+Requires: gcr-data = %{version}-%{release}
+Provides: gcr-devel = %{version}-%{release}
 
 %description dev
 dev components for the gcr package.
@@ -89,11 +91,21 @@ doc components for the gcr package.
 %package lib
 Summary: lib components for the gcr package.
 Group: Libraries
-Requires: gcr-data
-Requires: gcr-license
+Requires: gcr-data = %{version}-%{release}
+Requires: gcr-libexec = %{version}-%{release}
+Requires: gcr-license = %{version}-%{release}
 
 %description lib
 lib components for the gcr package.
+
+
+%package libexec
+Summary: libexec components for the gcr package.
+Group: Default
+Requires: gcr-license = %{version}-%{release}
+
+%description libexec
+libexec components for the gcr package.
 
 
 %package license
@@ -120,7 +132,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536130478
+export SOURCE_DATE_EPOCH=1543346566
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -139,10 +151,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1536130478
+export SOURCE_DATE_EPOCH=1543346566
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/gcr
-cp COPYING %{buildroot}/usr/share/doc/gcr/COPYING
+mkdir -p %{buildroot}/usr/share/package-licenses/gcr
+cp COPYING %{buildroot}/usr/share/package-licenses/gcr/COPYING
 %make_install
 %find_lang gcr
 
@@ -152,8 +164,6 @@ cp COPYING %{buildroot}/usr/share/doc/gcr/COPYING
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/gcr-viewer
-/usr/libexec/gcr-prompter
-/usr/libexec/gcr-ssh-askpass
 
 %files data
 %defattr(-,root,root,-)
@@ -196,7 +206,7 @@ cp COPYING %{buildroot}/usr/share/doc/gcr/COPYING
 /usr/share/icons/hicolor/48x48/apps/gcr-key.png
 /usr/share/icons/hicolor/48x48/apps/gcr-password.png
 /usr/share/icons/hicolor/48x48/apps/gcr-smart-card.png
-/usr/share/mime/packages/gcr-crypto-types.xml
+/usr/share/mime-packages/gcr-crypto-types.xml
 /usr/share/vala/vapi/gck-1.deps
 /usr/share/vala/vapi/gck-1.vapi
 /usr/share/vala/vapi/gcr-3.deps
@@ -375,9 +385,14 @@ cp COPYING %{buildroot}/usr/share/doc/gcr/COPYING
 /usr/lib64/libgcr-ui-3.so.1
 /usr/lib64/libgcr-ui-3.so.1.0.0
 
-%files license
+%files libexec
 %defattr(-,root,root,-)
-/usr/share/doc/gcr/COPYING
+/usr/libexec/gcr-prompter
+/usr/libexec/gcr-ssh-askpass
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/gcr/COPYING
 
 %files locales -f gcr.lang
 %defattr(-,root,root,-)
