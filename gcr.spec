@@ -4,10 +4,10 @@
 #
 Name     : gcr
 Version  : 3.28.1
-Release  : 14
+Release  : 15
 URL      : https://download.gnome.org/sources/gcr/3.28/gcr-3.28.1.tar.xz
 Source0  : https://download.gnome.org/sources/gcr/3.28/gcr-3.28.1.tar.xz
-Summary  : GObject and GUI library for high level crypto parsing and display
+Summary  : A library for bits of crypto UI and parsing
 Group    : Development/Tools
 License  : LGPL-2.0
 Requires: gcr-bin = %{version}-%{release}
@@ -75,6 +75,7 @@ Requires: gcr-lib = %{version}-%{release}
 Requires: gcr-bin = %{version}-%{release}
 Requires: gcr-data = %{version}-%{release}
 Provides: gcr-devel = %{version}-%{release}
+Requires: gcr = %{version}-%{release}
 
 %description dev
 dev components for the gcr package.
@@ -132,7 +133,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547835616
+export SOURCE_DATE_EPOCH=1556997864
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -151,7 +152,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1547835616
+export SOURCE_DATE_EPOCH=1556997864
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gcr
 cp COPYING %{buildroot}/usr/share/package-licenses/gcr/COPYING
