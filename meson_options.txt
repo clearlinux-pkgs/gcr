@@ -3,18 +3,38 @@ option('introspection',
   value: true,
   description: 'Build GObject Introspection (GIR) files',
 )
-option('gtk',
+option('vapi',
   type: 'boolean',
   value: true,
-  description: 'Build code that uses GTK+',
+  description: 'Generate vapi data (requires vapigen and introspection option)',
+)
+option('gtk3',
+  type: 'boolean',
+  value: true,
+  description: 'Enable the GTK3 library and utilities',
+)
+option('gtk4',
+  type: 'boolean',
+  value: true,
+  description: 'Enable the GTK4 library and utilities',
 )
 option('gtk_doc',
   type: 'boolean',
   value: true,
-  description: 'Build the reference documentation (requires gtk-doc)',
+  description: 'Build the reference documentation (requires gi-docgen)',
 )
 option('gpg_path',
   type: 'string',
   value: '',
   description: 'Path to gpg, autodetected if not set',
+)
+option('ssh_agent',
+  type: 'boolean',
+  value: true,
+  description: 'Build ssh-agent binary',
+)
+option('systemd',
+  type: 'feature',
+  value: 'auto',
+  description: 'Use systemd socket activation for server programs'
 )

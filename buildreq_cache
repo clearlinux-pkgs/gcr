@@ -1,3 +1,4 @@
-3.40.0
-docbook-xml
+3.90.0
+gi-docgen
+pkgconfig(libsecret-1)
 pkgconfig(p11-kit-1)

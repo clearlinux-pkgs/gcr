@@ -10,3 +10,4 @@ libgcrypt-dev
 gnupg
 vala
 vala-dev
+openssh
