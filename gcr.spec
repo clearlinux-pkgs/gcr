@@ -4,7 +4,7 @@
 #
 Name     : gcr
 Version  : 3.92.0
-Release  : 23
+Release  : 24
 URL      : https://download.gnome.org/sources/gcr/3.92/gcr-3.92.0.tar.xz
 Source0  : https://download.gnome.org/sources/gcr/3.92/gcr-3.92.0.tar.xz
 Summary  : GObject bindings for PKCS#11
