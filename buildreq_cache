@@ -1,4 +1,4 @@
-4.0.0
+4.2.0
 gi-docgen
 pkgconfig(libsecret-1)
 pkgconfig(p11-kit-1)
