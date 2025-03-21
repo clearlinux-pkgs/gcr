@@ -1,3 +1,52 @@
+gcr 4.4.0.1:
+- meson: Fix gck vesion
+
+gcr 4.4.0:
+- gcr: Add OID for Extended Key Usage
+- gcr: Avoid g_strv_builder_unref_to_strv() [GNOME/gcr!167]
+- gck: Disable parallel tests using gck-mock module [GNOME/gcr!165]
+- meson: Do a stricter check on GLib version [GNOME/gcr!166]
+- gcr: Support parsing ed25519 SSH public keys [GNOME/gcr!164]
+- Updated translations
+
+gcr 4.3.91:
+- Several updates to the CI
+- gcr: Implement Certificate Policies extension [GNOME/gcr!153]
+- gcr: Implement Authority Information Access (AIA) extension [GNOME/gcr!159]
+- gcr: Implement Authority Key Identifier extension [GNOME/gcr!161]
+- gcr: Implement CRL Distribution Points extension [GNOME/gcr!163]
+- gcr: Add GcrGeneralNames helper object [GNOME/gcr!162]
+- gck: Add missing finish-func annotation to gck_slot_open_session_full_async
+- Migrate away from g_assert() in some unit tests
+- Updated translations
+
+gcr 4.3.90.3:
+- ci: Another tarball publish fix
+
+gcr 4.3.90.2:
+- meson: fix library version
+
+gcr 4.3.90.1:
+- ci: Tarball publish fix
+
+gcr 4.3.90:
+- gcr: Add new GcrCertificateExtension API [GNOME/gcr!150]
+- gcr: Vala override for CertificateField.get_value [GNOME/gcr!144]
+- Fix meson test failures in FIPS mode [GNOME/gcr!145]
+- doap: Remove invalid maintainer entry [GNOME/gcr!147]
+- tests: Replace echo -n by printf [GNOME/gcr!148]
+- build: Avoid redundant libegg linking into gck tests [GNOME/gcr!149]
+- build: Fix some GLib/GTK deprecation warnings [GNOME/gcr!151]
+- ssh-agent: Request rsa-sha2-256 signature in tests [GNOME/gcr!154]
+- Updated translations
+
+gcr 4.3.0:
+- certificate: Add API to retrieve version [GNOME/gcr!135]
+- Bump required GnuTLS version to 3.8.5 [GNOME/gcr!142]
+- Avoid potential integer overflow spotted by UBSan [GNOME/gcr!141]
+- Support GnuTLS as an alternative crypto backend [GNOME/gcr!140]
+- Updated translations
+
 gcr 4.2.1:
 - gcr-ssh-agent: set `SSH_AUTH_SOCK` [GNOME/gcr!137]
 - gcr-ssh-agent: port avoid deadlock fix [GNOME/gcr!136]
